@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Dice Roller test</title>
+    
+    <style>
+        body {
+            background: black;
+            color: white;
+        }
+        
+    </style>
+    
+</head>
+
+<body>
+<p>Dice Roller</p>
+
+<button id="roll" onclick="Roller(event);">ROLL!</button>
+<label for "output">The rolls is:</label><input type="textbox" name="output" id="rollValue"></input>
+
+<select size="1" onchange="pickDie(event);">
+    <option selected>Pick One</option>
+    <option>d20</option>
+    <option>d12</option>
+    <option>d10</option>
+    <option>d8</option>
+    <option>d6</option>
+    <option>d4</option>
+</select>
+
+<button id="multi">Testing!</button>
+
+<label for "dieOutput">The value of those chosen die roll: </label><input type="textbox" name="dieOutput" id="dieOutput"></input>
+
+
+<label for"howManyDie">How many die do you want to roll? </label><input type="text" size="3" id="howManyDie"></input>
+<label for "dieSelection">Choose the type of die to roll: </label><select size="1" onchange="allTheDie(event);">
+    <option selected>Pick One</option>
+    <option>d20</option>
+    <option>d12</option>
+    <option>d10</option>
+    <option>d8</option>
+    <option>d6</option>
+    <option>d4</option>   
+    
+</select>
+<label = "multiRoll">The multi roll result: </label><input type="text" size="3" id="multiResult"></input>
+ <button id="rollEm" onclick="rollDice();">Multi Roll</button> 
+</body>
+<script src="js/diceroll.js"></script>
+</html>

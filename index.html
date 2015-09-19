@@ -1,12 +1,109 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="boss">
 <head>
+    <meta charset="utf-8">
     <title>Boss Damage Calculator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/form.css" />
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </head>
 
 <body>
-
+    <div> <!-- div that contains the form -->
+        <section class="topBar">
+            <label>Name<input type="text"></label></input>
+            <label>Race<select><option>Pick Race</option></select></label>
+            <label>Class<select><option>Pick Class</option></select></label>
+            <label>Size<select><option>Pick Size</option></select></label>
+            <label>Alignment<select><option>Pick Aligntment</option></select></label>
+            
+        </section>
+        <ul>
+            <li>Attributes & Defenses</li>
+            <li>Armor & Equipment</li>
+            <li>Skills</li>
+            <li>Attacks</li>
+            <li>Spellbook</li>
+            
+        </ul>
+        
+        <section class="attributesDef">
+            <div class="attributes">
+                <h3>Attributes</h3>
+                <p><label>STR</label><input type="text" size=1></input><input type="text" size=1></input><button>ROLL</button></p>
+                <p><label>CON</label><input type="text" size=1></input><input type="text" size=1></input><button>ROLL</button></p>
+                <p><label>DEX</label><input type="text" size=1></input><input type="text" size=1></input><button>ROLL</button></p>
+                <p><label>WIS</label><input type="text" size=1></input><input type="text" size=1></input><button>ROLL</button></p>
+                <p><label>INT</label><input type="text" size=1></input><input type="text" size=1></input><button>ROLL</button></p>
+                <p><label>CHA</label><input type="text" size=1></input><input type="text" size=1></input><button>ROLL</button></p>
+            </div>
+            <div class=defenses>
+                <h3>Defenses</h3>
+                <p><label>AC<input type="text" size=1></input></label><label>CMD<input type="text" size=1></input></label><label>CMB<input type="text" size=1></input></label></p>
+                <p><label>FORT <input type="text" size=1></input></label></p>
+                <p><label>REFLEX <input type="text" size=1></input></label></p>
+                <p><label>WILL <input type="text" size=1></input></label></p>
+                <p><label>BAB <input type="text" size=1></input></label></p>
+                <p><label>SPELL RESIST <input type="text" size=1></input></label></p>
+            </div>
+            
+        </section> <!-- Attributes & defense section -->
+        <section class="armorEquip">
+            <p><label>ARMOR <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>WEAPON <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>HELMET <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>GLOVES <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>BOOTS <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>BELT <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>CAPE <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>NECK <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>EARRINGS <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>RING 1 <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>RING 2 <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>OTHER 1 <select><option>Select</option></select></label><button>Custom</button></p>
+            <p><label>OTHER 2 <select><option>Select</option></select></label><button>Custom</button></p>
+            
+            
+        </section> <!-- Armor & Equipment section -->
+        <section class="skills">
+            <h3>SKILLS</h3>
+            <p><label>Acrobatics</label><input type="text" size=1><label> = </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input></p>
+            <p><label>Appraise</label><input type="text" size=1><label> = </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input></p>
+            <p><label>Bluff</label><input type="text" size=1><label> = </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input></p> 
+            
+        </section><!-- Skills section -->
+        
+        <section class="attacks">
+            <h3>ATTACK</h3>
+            <p><select><option>Select Weapon</option></select><label>Power Atk<input type="checkbox"></input></label><label>Charge<input type="checkbox"></input></label></p>
+            <p><label>Damage <input type="text" size=1></input> <label> = </label><label>BAB <input type="text" size=1></input></label><label> + </label>
+            <label>Weapon <input type="text" size=1></input></label><label> + </label><label>DMG <input type="text" size=1></input></label></label></p>
+            <p><button>Roll Damage</button></p>
+            
+        </section><!-- Attacks section -->
+        
+        <section class="spells">
+            <h3>SPELLS</h3>
+            <div>
+                <p><select><option>Spell</option></select></p>
+                <p><label>Energy <select><option>Fire</option></select></label></p>
+                <p><label>Roll Damage</label><input type="text" size=1></input><button>ROLL</button></p>
+            </div>
+            <div>
+                <p><label>EMPOWER<input type="checkbox"></input></label><label>WIDEN<input type="checkbox"></input></label></p>
+                <p><label>MAXIMIZE<input type="checkbox"></input></label><label>ENLARGE<input type="checkbox"></input></label></p>
+                <p><label>EXTEND<input type="checkbox"></input></label><label>HEIGHTEN<input type="checkbox"></input></label></p>
+                <p><label>QUICKEN<input type="checkbox"></input></label><label>SILENT<input type="checkbox"></input></label></p>
+                <p><label>STILL<input type="checkbox"></input></label></p>
+                
+            </div>
+            
+        </section><!-- Spell book section -->
+        
+    </div>
 
 
 </body>

@@ -39,6 +39,8 @@ function pickDie(event) {
    
 }
 
+// This function will set the type of die to be rolled. The global variable typeOfDie is set to the
+// appropriate value.
 function allTheDie(event) {
        howManyDie = parseInt(document.getElementById("howManyDie").value);
      
@@ -62,28 +64,38 @@ function allTheDie(event) {
             typeOfDie = 4;
             break;        
      };
-     
-     console.log(typeOfDie);
+     //error checking - to be removed
+     console.log("d" + typeOfDie);
          
     };
     
+
+    // This function will roll the dice, add the values togetherm, then output the value to the input box.
     function rollDice() {
-        console.log(howManyDie);
+        console.log("You chose to roll: " + howManyDie + " die");
         var result;
+        var diceRoll = new Array();
+        
             for (var count = 0; count < howManyDie; count++) {
-            var diceRoll = new Array(howManyDie);
-            diceRoll[count] = (Math.ceil(Math.random() * typeOfDie));
-            console.log("For Loop running");
-            console.log(diceRoll[count]);
-            result += diceRoll[count];
-                  
+                   diceRoll[count] = (Math.ceil(Math.random() * typeOfDie));
             };
             
-        document.getElementById("multiResult").value = result; 
-    };   
+        
+        result = diceRoll.reduce(function(total, value) {return total + value});
+        
+        document.getElementById("multiResult").value = result;
+        
+        cleanUp();
+        
+    };
+    // This function will rest the global variables so the user can keep rolling dice. There must be a standard way of doing    this.
+    function cleanUp () {
+        howManyDie = 0;
+        typeOfDie = 0;
+        };
     
     
-    //document.getElementByID("rollEm").addEventListener("click", function() {document.getElementById("multiResult").value = result; console.log("button active");},false);
+
     
 
 

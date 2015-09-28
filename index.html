@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div> <!-- div that contains the form -->
+    <div ng-controller="TabController as tab"> <!-- div that contains the tab forms -->
         <section class="topBar">
             <label>Name<input type="text"></label></input>
             <label>Race<select><option>Pick Race</option></select></label>
@@ -22,15 +22,15 @@
             
         </section>
         <ul>
-            <li>Attributes & Defenses</li>
-            <li>Armor & Equipment</li>
-            <li>Skills</li>
-            <li>Attacks</li>
-            <li>Spellbook</li>
+            <li ng-class="{active:tab.isSelected(1)}"><a href ng-click="tab.selectTab(1)" >Attributes & Defenses</a></li>
+            <li ng-class="{active:tab.isSelected(2)}"><a href ng-click="tab.selectTab(2)" >Armor & Equipment</a></li>
+            <li ng-class="{active:tab.isSelected(3)}"><a href ng-click="tab.selectTab(3)" >Skills</a></li>
+            <li ng-class="{active:tab.isSelected(4)}"><a href ng-click="tab.selectTab(4)" >Attacks</a></li>
+            <li ng-class="{active:tab.isSelected(5)}"><a href ng-click="tab.selectTab(5)" >Spellbook</a></li>
             
         </ul>
         
-        <section class="attributesDef">
+        <section class="attributesDef" ng-show="tab.isSelected(1)">
             <div class="attributes">
                 <h3>Attributes</h3>
                 <p><label>STR</label><input type="text" size=1></input><input type="text" size=1></input><button>ROLL</button></p>
@@ -51,7 +51,7 @@
             </div>
             
         </section> <!-- Attributes & defense section -->
-        <section class="armorEquip">
+        <section class="armorEquip" ng-show="tab.isSelected(2)">
             <p><label>ARMOR <select><option>Select</option></select></label><button>Custom</button></p>
             <p><label>WEAPON <select><option>Select</option></select></label><button>Custom</button></p>
             <p><label>HELMET <select><option>Select</option></select></label><button>Custom</button></p>
@@ -68,7 +68,7 @@
             
             
         </section> <!-- Armor & Equipment section -->
-        <section class="skills">
+        <section class="skills" ng-show="tab.isSelected(3)">
             <h3>SKILLS</h3>
             <p><label>Acrobatics</label><input type="text" size=1><label> = </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input></p>
             <p><label>Appraise</label><input type="text" size=1><label> = </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input><label> + </label><input type="text" size=1></input></p>
@@ -76,7 +76,7 @@
             
         </section><!-- Skills section -->
         
-        <section class="attacks">
+        <section class="attacks" ng-show="tab.isSelected(4)">
             <h3>ATTACK</h3>
             <p><select><option>Select Weapon</option></select><label>Power Atk<input type="checkbox"></input></label><label>Charge<input type="checkbox"></input></label></p>
             <p><label>Damage <input type="text" size=1></input> <label> = </label><label>BAB <input type="text" size=1></input></label><label> + </label>
@@ -85,7 +85,7 @@
             
         </section><!-- Attacks section -->
         
-        <section class="spells">
+        <section class="spells" ng-show="tab.isSelected(5)">
             <h3>SPELLS</h3>
             <div>
                 <p><select><option>Spell</option></select></p>

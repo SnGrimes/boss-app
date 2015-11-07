@@ -1,59 +1,56 @@
 <?php
+        
+    require 'vendor/autoload.php';    
+    
+    $app = new \Slim\Slim(array(
+            'debug' => true                       
+        ));
 
-    require 'library/Slim/Slim.php';
-    \Slim\Slim::registerAutoloader();
-    $app = new \Slim\Slim(array('templates.path' => 'templates', 'debug' => true));
-    $app->get('/', function () use ($app) {
-        require_once 'connect.php';
-        $db = connect_db();
-        
-        $result = $db->query( 'SELECT name FROM test;');
-        while ( $row = $result->fetch_array(MYSQLI_ASSOC)) {
-            $data[] = $row;
-        }
-        
-        $app->render('test.php', array(
-                                       'data' => $data)
-                     );
-        
+    
+    $server = 'localhost';
+    $user = 'root';
+    $pass = 'Furnitska';
+    $database = 'bossapp';
+    $db = new PDO("mysql:host=$server; dbname=$database", $user, $pass);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $app->get('/', function() use ($app) {
+        $app->response->setStatus(200);
+        echo "Welcome to the api";
+    
     });
     
-    $app->get('/:id', 'getData');
-    $app->get('/', 'getAllData');
-    $app->post('/', 'postData');
-    $app->put('/:id', 'putData');
-    $app->delete('/:id', 'deleteData');
+    $app->get('/getChar', function() use ($app) {
+      $server = 'localhost';
+    $user = 'root';
+    $pass = 'Furnitska';
+    $database = 'bossapp';
+    $db = new PDO("mysql:host=$server; dbname=$database", $user, $pass);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    
-    $app->run();
-    
-    function getAllData() {
-        try {
-            $sql = "select * from test";
-            $preppedStatement = $db->prepare($sql);
-            $preppedStatement->bindParam("id", $id);
-            $preppedStatement->bindParam("name", $name);
-            $preppedStatement->execute();            
-        } catch(]PDOException $error) {
-            echo 'Exception:' . $error->getMessage();
-        }
+        $statement = $db->prepare('SELECT * FROM test');
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        //PDO::Fetch_Assoc will only pull associative key and not the numeric key           
         
-        
-    }
-    function getData($id) {
-        // return data $id
-        
-    }
-    
-    function postData() {
-        // save new data
-    }
-    
-    function putData($id) {
-        //update data
-    }
-    function deleteData($id) {
-        //delete data $id
-    }
-?>
+        $app->response()->headers->set('Content-Type', 'application/json'); //will output the sql data as JSON
+        echo json_encode($result, JSON_PRETTY_PRINT);
+        /*
+        if(count($result)) {
+            foreach($result as $row) {
+                header('Content-Type: application/json'); //will output the sql data as JSON
+                echo json_encode($row, JSON_PRETTY_PRINT);
+                $app->response->setStatus(200);
+                //print_r($row);
+                
+                         
+                       }
+                    } else {
+                        print_r("No rows returned");
+        } */
+    });
+ $app->run();
 
+             
+
+?>

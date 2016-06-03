@@ -1,4 +1,4 @@
 # boss-app
 Epic level character creator
 
-A bunch of code I'm writing to create a pen and paper character creator.
+A D&D 3.5/Pathfinder epic level character generator and character sheet.
